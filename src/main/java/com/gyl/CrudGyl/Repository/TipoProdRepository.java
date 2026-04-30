@@ -17,7 +17,7 @@ public interface TipoProdRepository extends JpaRepository<TipoProducto,Long> {
     @Override
     Optional<TipoProducto> findById(Long aLong);
 
-    List<Producto>findByNombre(String nombre);
+    List<TipoProducto>findByNombre(String nombre);
 
-    List<Producto> findByEstadoTipoProdTrue(); //Ver el metodo y como se llama
+    List<TipoProducto> findByEstadoTipoProdTrue(); //Ver el metodo y como se llama
 }

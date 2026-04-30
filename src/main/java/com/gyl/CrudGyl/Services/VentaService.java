@@ -2,8 +2,10 @@ package com.gyl.CrudGyl.Services;
 
 import com.gyl.CrudGyl.Dto.Request.VentaRequestDto;
 import com.gyl.CrudGyl.Dto.Response.VentaResponseDto;
+import com.gyl.CrudGyl.Entity.Producto;
 import com.gyl.CrudGyl.Entity.Venta;
 import com.gyl.CrudGyl.Exceptions.RecursosNoEncontradoException;
+import com.gyl.CrudGyl.Mapper.ProductoMapper;
 import com.gyl.CrudGyl.Mapper.VentaMapper;
 import com.gyl.CrudGyl.Repository.VentaRepository;
 import com.gyl.CrudGyl.Services.Interfaces.IVentaService;
@@ -28,7 +30,7 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public List<VentaResponseDto> listarProductos() {
+    public List<VentaResponseDto> listarVentas() {
 
         return ventaRepository.findAll()
                 .stream()
@@ -67,7 +69,7 @@ public class VentaService implements IVentaService {
     }
 
     @Override
-    public List<VentaResponseDto> listarClientesConEstadoTrue() {
+    public List<VentaResponseDto> listarVentasConEstadoTrue() {
 
         return ventaRepository.findByEstadoVentaTrue()
                 .stream()
@@ -80,7 +82,8 @@ public class VentaService implements IVentaService {
         Venta venta=ventaRepository.findById(id).orElseThrow(()-> new RecursosNoEncontradoException(
                 "No se encontro una venta con el id: "+id
         ));
-
-        return null;
+        VentaMapper.updateEstado(venta,dto);
+        Venta guardado=ventaRepository.save(venta);
+        return VentaMapper.toDto(guardado);
     }
 }

@@ -4,6 +4,6 @@ public record TipoProdResponseDto(
          Long id_tipo_producto,
          String nombre,
          String descripcion,
-         Boolean estado_Tipoprod
+         Boolean estado_tipoprod
 ) {
 }

@@ -11,7 +11,7 @@ public interface IVentaService {
 
     VentaResponseDto crear(VentaRequestDto dto);
 
-    List<VentaResponseDto> listarProductos();
+    List<VentaResponseDto> listarVentas();
 
     VentaResponseDto buscarPorId(Long id);
 
@@ -19,7 +19,7 @@ public interface IVentaService {
 
     void eliminar(Long id);
 
-    List<VentaResponseDto> listarClientesConEstadoTrue();
+    List<VentaResponseDto> listarVentasConEstadoTrue();
 
     VentaResponseDto actualizarEstado(Long id, VentaRequestDto dto);
 }

@@ -13,6 +13,7 @@ public class TipoProdMapper {
         TipoProducto tipoProducto=new TipoProducto();
         tipoProducto.setDescripcion(dto.descripcion());
         tipoProducto.setNombre(dto.nombre());
+        tipoProducto.setEstadoTipoProd(dto.estado_tipoProd());
         return tipoProducto;
     }
 
@@ -25,10 +26,10 @@ public class TipoProdMapper {
                 tipoProducto.getEstadoTipoProd()
         );
     }
-    public void updateEntity(TipoProducto tipoProducto,TipoProdResponseDto tipoProdResponseDto){
+    public static void updateEntity(TipoProducto tipoProducto,TipoProdRequestDto tipoProdResponseDto){
         tipoProducto.setNombre(tipoProdResponseDto.nombre());
         tipoProducto.setDescripcion(tipoProducto.getDescripcion());
-        tipoProducto.setEstadoTipoProd(tipoProdResponseDto.estado_Tipoprod());
+        tipoProducto.setEstadoTipoProd(tipoProdResponseDto.estado_tipoProd());
     }
 
     public static void updateEstado(TipoProducto tipoProducto, TipoProdRequestDto dto){

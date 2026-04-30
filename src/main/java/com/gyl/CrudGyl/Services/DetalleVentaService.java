@@ -4,6 +4,8 @@ import com.gyl.CrudGyl.Dto.Request.DetalleVentaRequestDto;
 import com.gyl.CrudGyl.Dto.Response.DetalleVentaResponseDto;
 import com.gyl.CrudGyl.Dto.Request.VentaRequestDto;
 import com.gyl.CrudGyl.Dto.Response.VentaResponseDto;
+import com.gyl.CrudGyl.Exceptions.RecursosNoEncontradoException;
+import com.gyl.CrudGyl.Mapper.DetalleVentaMapper;
 import com.gyl.CrudGyl.Repository.DetalleVentaRepository;
 import com.gyl.CrudGyl.Services.Interfaces.IDetalleVentaService;
 import org.springframework.stereotype.Service;
@@ -25,16 +27,25 @@ public class DetalleVentaService implements IDetalleVentaService {
 
     @Override
     public List<DetalleVentaResponseDto> listarDetalleVentas() {
-        return List.of();
+
+        return detalleVentaRepository.findByEstadoDetalleVentaTrue()
+                .stream()
+                .map(DetalleVentaMapper::toDto)
+                .toList();
     }
 
     @Override
-    public VentaResponseDto buscarPorId(Long id) {
-        return null;
+    public DetalleVentaResponseDto buscarPorId(Long id) {
+
+        return detalleVentaRepository.findById(id)
+                .map(DetalleVentaMapper::toDto)
+                .orElseThrow(()->new RecursosNoEncontradoException(
+                "No se encontro un detalle de venta con el id: "+id
+        ));
     }
 
     @Override
-    public VentaResponseDto actualizar(Long id, VentaRequestDto dto) {
+    public DetalleVentaResponseDto actualizar(Long id, VentaRequestDto dto) {
         return null;
     }
 

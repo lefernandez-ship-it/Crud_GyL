@@ -15,9 +15,9 @@ public interface IDetalleVentaService {
 
     List<DetalleVentaResponseDto> listarDetalleVentas();
 
-    VentaResponseDto buscarPorId(Long id);
+    DetalleVentaResponseDto buscarPorId(Long id);
 
-    VentaResponseDto actualizar(Long id,VentaRequestDto dto);
+    DetalleVentaResponseDto actualizar(Long id,VentaRequestDto dto);
 
     void eliminar(Long id);
 

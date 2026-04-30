@@ -3,6 +3,7 @@ package com.gyl.CrudGyl.Mapper;
 import com.gyl.CrudGyl.Dto.Request.ProductoRequestdTO;
 import com.gyl.CrudGyl.Dto.Request.VentaRequestDto;
 import com.gyl.CrudGyl.Dto.Response.VentaResponseDto;
+import com.gyl.CrudGyl.Entity.Cliente;
 import com.gyl.CrudGyl.Entity.Producto;
 import com.gyl.CrudGyl.Entity.Venta;
 
@@ -16,6 +17,9 @@ public class VentaMapper {
         venta.setFechaVenta(dto.fechaVenta());
         venta.setTotal(dto.total());
         venta.setEstadoVenta(dto.estado_venta());
+        Cliente cliente = new Cliente();
+        cliente.setId_cliente(dto.id_cliente());
+        venta.setCliente(cliente);
         return venta;
     }
 
