@@ -7,9 +7,11 @@ import com.gyl.CrudGyl.Exceptions.RecursosNoEncontradoException;
 import com.gyl.CrudGyl.Mapper.TipoProdMapper;
 import com.gyl.CrudGyl.Repository.TipoProdRepository;
 import com.gyl.CrudGyl.Services.Interfaces.ITipoProductoService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TipoProductoService implements ITipoProductoService {
     private TipoProdRepository tipoProdRepository;
 
@@ -51,5 +53,15 @@ public class TipoProductoService implements ITipoProductoService {
     @Override
     public List<TipoProdResponseDto> busquedaNombre(String nombre) {
         return List.of();
+    }
+
+    @Override
+    public List<TipoProdResponseDto> listarClientesConEstadoTrue() {
+        return List.of();
+    }
+
+    @Override
+    public TipoProdResponseDto actualizarEstado(Long id, TipoProdRequestDto dto) {
+        return null;
     }
 }

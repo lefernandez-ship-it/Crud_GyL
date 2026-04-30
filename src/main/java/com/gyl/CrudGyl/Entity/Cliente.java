@@ -40,7 +40,7 @@ public class Cliente {
     private String direccion;
 
     @Column(name = "estado_cliente", nullable = false)
-    private Boolean estado_cliente;
+    private Boolean estadoCliente;
 
 
     // Constructores, Getters y Setters

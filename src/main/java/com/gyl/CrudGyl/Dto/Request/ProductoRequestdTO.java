@@ -22,7 +22,10 @@ public record ProductoRequestdTO (
         Integer stock,
 
         @NotNull(message = "El estado es obligatorio") // Se usa NotNull para Booleanos
-        Boolean estado_prod
+        Boolean estado_prod,
+
+        @NotNull(message = "La categoría es obligatoria")
+        Long id_tipo_producto
 ){
 
 

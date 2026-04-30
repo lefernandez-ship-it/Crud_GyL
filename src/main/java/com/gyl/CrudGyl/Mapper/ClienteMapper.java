@@ -1,8 +1,10 @@
 package com.gyl.CrudGyl.Mapper;
 
 import com.gyl.CrudGyl.Dto.Request.ClienteRequestDto;
+import com.gyl.CrudGyl.Dto.Request.ProductoRequestdTO;
 import com.gyl.CrudGyl.Dto.Response.ClienteResponseDto;
 import com.gyl.CrudGyl.Entity.Cliente;
+import com.gyl.CrudGyl.Entity.Producto;
 
 public class ClienteMapper {
     public ClienteMapper() {
@@ -16,6 +18,7 @@ public class ClienteMapper {
         cliente.setCorreo(dto.correo());
         cliente.setTelefono(dto.telefono());
         cliente.setDireccion(dto.direccion());
+        cliente.setEstadoCliente(dto.estado_cliente());
 
         return  cliente;
     }
@@ -29,16 +32,20 @@ public class ClienteMapper {
                 cliente.getCorreo(),
                 cliente.getTelefono(),
                 cliente.getDireccion(),
-                cliente.getEstado_cliente()
+                cliente.getEstadoCliente()
         );
     }
 
-    public void updateEntity(Cliente cliente, ClienteResponseDto dto){
+    public static void updateEntity(Cliente cliente, ClienteRequestDto dto){
         cliente.setNombre(dto.nombre());
         cliente.setApellido(dto.apellido());
         cliente.setDireccion(dto.direccion());
         cliente.setTelefono(dto.telefono());
         cliente.setCorreo(dto.correo());
-        cliente.setEstado_cliente(dto.estado_cliente());
+        cliente.setEstadoCliente(dto.estado_cliente());
     }
+    public static void updateEstado(Cliente cliente, ClienteRequestDto dto){
+        cliente.setEstadoCliente(dto.estado_cliente());
+    }
+
 }

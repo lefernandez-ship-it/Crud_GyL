@@ -4,26 +4,35 @@ package com.gyl.CrudGyl.Services;
 import com.gyl.CrudGyl.Dto.Request.ProductoRequestdTO;
 import com.gyl.CrudGyl.Dto.Response.ProductoResponsetDto;
 import com.gyl.CrudGyl.Entity.Producto;
+import com.gyl.CrudGyl.Entity.TipoProducto;
 import com.gyl.CrudGyl.Exceptions.RecursosNoEncontradoException;
 import com.gyl.CrudGyl.Mapper.ProductoMapper;
 import com.gyl.CrudGyl.Repository.ProductoRepository;
+import com.gyl.CrudGyl.Repository.TipoProdRepository;
 import com.gyl.CrudGyl.Services.Interfaces.IProductoService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.util.Arrays.stream;
+
 @Service
 public class ProductoService implements IProductoService {
 
     private ProductoRepository productoRepository;
+    private TipoProdRepository tipoProdRepository;
 
-    public ProductoService(ProductoRepository productoRepository) {
+    public ProductoService(ProductoRepository productoRepository, TipoProdRepository tipoProdRepository) {
         this.productoRepository = productoRepository;
+        this.tipoProdRepository = tipoProdRepository;
     }
 
     @Override
     public ProductoResponsetDto crear(ProductoRequestdTO dto) {//Hacerlo un metodo funcional
         Producto producto= ProductoMapper.toEntity(dto);
+        TipoProducto tipo = tipoProdRepository.findById(dto.id_tipo_producto())
+                .orElseThrow(() -> new RecursosNoEncontradoException("Categoría no encontrada"));
+        producto.setTipoProducto(tipo);
         Producto guardado=productoRepository.save(producto);
         return ProductoMapper.toDto(guardado);//toResponseDto
     }
@@ -39,7 +48,7 @@ public class ProductoService implements IProductoService {
 
     @Override
     public List<ProductoResponsetDto> listarProductosConEstadoTrue() {
-        return productoRepository.findByEstadoProdTrue()
+        return productoRepository.findByEstadoProdTrue() // Sin el punto y coma aquí
                 .stream()
                 .map(ProductoMapper::toDto)
                 .toList();
@@ -51,6 +60,18 @@ public class ProductoService implements IProductoService {
                 .map(ProductoMapper:: toDto)
                 .orElseThrow(()->new RecursosNoEncontradoException(
                         "No se encontro el id: "+id));
+    }
+
+    @Override
+    public ProductoResponsetDto actualizarEstado(Long id, ProductoRequestdTO dto) {
+        Producto producto=productoRepository.findById(id)
+                .orElseThrow(()->new RecursosNoEncontradoException(
+                        "No se encontro el id: "+id
+                ));
+
+        ProductoMapper.updateEstado(producto,dto);
+        Producto guardado=productoRepository.save(producto);
+        return ProductoMapper.toDto(guardado);
     }
 
     @Override

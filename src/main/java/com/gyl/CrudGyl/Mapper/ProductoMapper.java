@@ -15,6 +15,7 @@ public class ProductoMapper {
         producto.setPrecio(dto.precio());
         producto.setStock(dto.stock());
         producto.setEstadoProd(dto.estado_prod());
+        //producto.setTipoProducto(dto.id_tipo_producto());
 
         return producto;
     }
@@ -26,13 +27,17 @@ public class ProductoMapper {
                 producto.getPrecio(),
                 producto.getStock(),
                 producto.getEstadoProd(),
-                producto.getTipoProducto().getId_tipo_producto()
+                producto.getTipoProducto() != null ? producto.getTipoProducto().getId_tipo_producto() : null
         );
     }
     public static void updateEntity(Producto producto,ProductoRequestdTO dto){
         producto.setNombre(dto.nombre());
         producto.setStock(dto.stock());
         producto.setPrecio(dto.precio());
+        producto.setEstadoProd(dto.estado_prod());
+    }
+
+    public static void updateEstado(Producto producto,ProductoRequestdTO dto){
         producto.setEstadoProd(dto.estado_prod());
     }
 

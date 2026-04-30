@@ -29,7 +29,8 @@ public class TipoProducto {
     private String descripcion;
 
     @NotNull(message = "El estado es obligatorio") // Se usa NotNull para Booleanos
-    Boolean estado_tipoProd;
+    @Column(name = "estado_tipoProd")
+    Boolean estadoTipoProd;
 
     // Constructores, Getters y Setters
 }

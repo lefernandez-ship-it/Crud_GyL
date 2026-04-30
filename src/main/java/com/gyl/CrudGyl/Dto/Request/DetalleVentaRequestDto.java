@@ -23,7 +23,7 @@ public record DetalleVentaRequestDto (
          Long id_venta, // Agregado para la relación
 
          @NotNull(message = "El estado es obligatorio") // Se usa NotNull para Booleanos
-         Boolean estado_venta
+         Boolean estado_detalleVenta
 
 
 ){

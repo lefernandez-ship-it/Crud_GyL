@@ -1,6 +1,8 @@
 package com.gyl.CrudGyl.Services.Interfaces;
 
+import com.gyl.CrudGyl.Dto.Request.ClienteRequestDto;
 import com.gyl.CrudGyl.Dto.Request.TipoProdRequestDto;
+import com.gyl.CrudGyl.Dto.Response.ClienteResponseDto;
 import com.gyl.CrudGyl.Dto.Response.TipoProdResponseDto;
 
 import java.util.List;
@@ -17,4 +19,8 @@ public interface ITipoProductoService {
     void eliminar(Long id);
 
     List<TipoProdResponseDto> busquedaNombre(String nombre);
+
+    List<TipoProdResponseDto> listarClientesConEstadoTrue();
+
+    TipoProdResponseDto actualizarEstado(Long id, TipoProdRequestDto dto);
 }

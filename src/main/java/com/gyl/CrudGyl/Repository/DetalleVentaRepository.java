@@ -15,4 +15,8 @@ public interface DetalleVentaRepository extends JpaRepository<DetalleVenta,Long>
 
     @Override
     List<DetalleVenta> findAll();
+
+    //List<DetalleVenta>findByNombre(String nombre);
+
+    List<DetalleVenta> findByEstadoDetalleVentaTrue();
 }

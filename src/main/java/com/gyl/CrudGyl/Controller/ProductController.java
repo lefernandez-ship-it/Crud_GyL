@@ -28,6 +28,16 @@ public class ProductController {
         return productoService.listarProductos();
     }
 
+    @GetMapping("/estado")
+    public List<ProductoResponsetDto> listarEstados(){
+        return productoService.listarProductosConEstadoTrue();
+    }
+
+    @PutMapping("/estado/{id}")//eliminar sin tener que usar delete
+    public ProductoResponsetDto cambiarEstado(@PathVariable Long id, @Valid @RequestBody ProductoRequestdTO dto){
+        return productoService.actualizarEstado(id,dto);
+    }
+
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id){
         productoService.eliminar(id);

@@ -12,6 +12,8 @@ public record DetalleVentaResponseDto(
 
          BigDecimal subTotal,
 
+         Boolean estado_detalleVenta,
+
          Long  id_venta,
 
          Long id_producto

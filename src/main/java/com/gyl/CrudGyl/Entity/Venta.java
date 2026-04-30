@@ -29,7 +29,8 @@ public class Venta {
     private BigDecimal total;
 
     @NotNull(message = "El estado es obligatorio") // Se usa NotNull para Booleanos
-    Boolean estado_venta;
+    @Column(name = "estado_venta")
+    Boolean estadoVenta;
 
     // La FK id_cliente
     @ManyToOne(fetch = FetchType.LAZY)

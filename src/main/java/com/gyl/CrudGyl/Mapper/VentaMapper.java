@@ -1,7 +1,9 @@
 package com.gyl.CrudGyl.Mapper;
 
+import com.gyl.CrudGyl.Dto.Request.ProductoRequestdTO;
 import com.gyl.CrudGyl.Dto.Request.VentaRequestDto;
 import com.gyl.CrudGyl.Dto.Response.VentaResponseDto;
+import com.gyl.CrudGyl.Entity.Producto;
 import com.gyl.CrudGyl.Entity.Venta;
 
 public class VentaMapper {
@@ -13,7 +15,7 @@ public class VentaMapper {
 
         venta.setFechaVenta(dto.fechaVenta());
         venta.setTotal(dto.total());
-        venta.setEstado_venta(dto.estado_venta());
+        venta.setEstadoVenta(dto.estado_venta());
         return venta;
     }
 
@@ -22,7 +24,7 @@ public class VentaMapper {
                 venta.getId_ventas(),
                 venta.getFechaVenta(),
                 venta.getTotal(),
-                venta.getEstado_venta(),
+                venta.getEstadoVenta(),
                 venta.getId_ventas()
         );
     }
@@ -30,6 +32,10 @@ public class VentaMapper {
     public void updateEntity(Venta venta,VentaResponseDto dto){
         venta.setTotal(dto.total());
         venta.setFechaVenta(dto.fechaVenta());
-        venta.setEstado_venta(dto.estado_venta());
+        venta.setEstadoVenta(dto.estado_venta());
+    }
+
+    public static void updateEstado(Venta venta, VentaRequestDto dto){
+        venta.setEstadoVenta(dto.estado_venta());
     }
 }

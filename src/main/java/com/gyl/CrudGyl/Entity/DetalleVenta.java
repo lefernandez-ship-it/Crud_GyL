@@ -31,7 +31,8 @@ public class DetalleVenta {
     private BigDecimal subTotal;
 
     @NotNull(message = "El estado es obligatorio") // Se usa NotNull para Booleanos
-    Boolean estado_detalleVenta;
+    @Column(name = "estado_detalleVenta")
+    Boolean estadoDetalleVenta;
 
     // Relación con la Venta (FK id_ventas)
     @ManyToOne(fetch = FetchType.LAZY)

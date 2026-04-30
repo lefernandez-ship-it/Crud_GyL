@@ -1,7 +1,9 @@
 package com.gyl.CrudGyl.Mapper;
 
+import com.gyl.CrudGyl.Dto.Request.ProductoRequestdTO;
 import com.gyl.CrudGyl.Dto.Request.TipoProdRequestDto;
 import com.gyl.CrudGyl.Dto.Response.TipoProdResponseDto;
+import com.gyl.CrudGyl.Entity.Producto;
 import com.gyl.CrudGyl.Entity.TipoProducto;
 
 public class TipoProdMapper {
@@ -20,12 +22,16 @@ public class TipoProdMapper {
                 tipoProducto.getId_tipo_producto(),
                 tipoProducto.getNombre(),
                 tipoProducto.getDescripcion(),
-                tipoProducto.getEstado_tipoProd()
+                tipoProducto.getEstadoTipoProd()
         );
     }
     public void updateEntity(TipoProducto tipoProducto,TipoProdResponseDto tipoProdResponseDto){
         tipoProducto.setNombre(tipoProdResponseDto.nombre());
         tipoProducto.setDescripcion(tipoProducto.getDescripcion());
-        tipoProducto.setEstado_tipoProd(tipoProdResponseDto.estado_Tipoprod());
+        tipoProducto.setEstadoTipoProd(tipoProdResponseDto.estado_Tipoprod());
+    }
+
+    public static void updateEstado(TipoProducto tipoProducto, TipoProdRequestDto dto){
+        tipoProducto.setEstadoTipoProd(dto.estado_tipoProd());
     }
 }

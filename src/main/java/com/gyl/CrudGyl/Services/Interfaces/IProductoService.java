@@ -15,6 +15,8 @@ public interface IProductoService {
 
     ProductoResponsetDto buscarPorId(Long id);
 
+    ProductoResponsetDto actualizarEstado(Long id,ProductoRequestdTO dto);
+
     ProductoResponsetDto actualizar(Long id,ProductoRequestdTO dto);
 
     void eliminar(Long id);
