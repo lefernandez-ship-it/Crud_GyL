@@ -30,8 +30,11 @@ public class DetalleVentaMapper {
         );
     }
 
-    public void updateEntity(){
-
+    public static void updateEntity(DetalleVenta detalleVenta,DetalleVentaRequestDto dto){
+        detalleVenta.setCantidad(dto.cantidad());
+        detalleVenta.setPrecioUnitario(dto.precioUnitario());
+        detalleVenta.setSubTotal(dto.subTotal());
+        detalleVenta.setEstadoDetalleVenta(dto.estado_detalleVenta());
     }
 
     public static void updateEstado(DetalleVenta detalleVenta, DetalleVentaRequestDto dto){
