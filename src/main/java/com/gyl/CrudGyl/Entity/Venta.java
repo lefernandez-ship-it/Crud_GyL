@@ -32,14 +32,25 @@ public class Venta {
     @Column(name = "estado_venta")
     Boolean estadoVenta;
 
+
     // La FK id_cliente
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
 
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DetalleVenta> detalles;
 
+
+    @PrePersist // <--- ¡Esto es lo que falta!
     protected void onCreate() {
         this.fechaVenta = LocalDateTime.now();
+        if (this.estadoVenta == null) this.estadoVenta = true; // Valor por defecto
+    }
+
+    public void addDetalle(DetalleVenta detalle) {
+        detalles.add(detalle);
+        detalle.setVenta(this); // Esto asegura que el detalle sepa a qué venta pertenece
     }
 
     // Constructores, Getters y Setters

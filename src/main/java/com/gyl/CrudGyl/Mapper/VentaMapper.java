@@ -29,7 +29,8 @@ public class VentaMapper {
                 venta.getFechaVenta(),
                 venta.getTotal(),
                 venta.getEstadoVenta(),
-                venta.getId_ventas()
+                venta.getId_ventas(),
+                venta.getDetalles().stream().map(DetalleVentaMapper::toDto).toList() // Mapeo de la lista
         );
     }
 

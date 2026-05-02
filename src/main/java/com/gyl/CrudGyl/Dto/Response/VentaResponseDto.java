@@ -2,18 +2,20 @@ package com.gyl.CrudGyl.Dto.Response;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public record VentaResponseDto (
 
-         Long id_ventas,
+        Long id_ventas,
 
-         LocalDateTime fechaVenta,
+        LocalDateTime fechaVenta,
 
-         BigDecimal total,
+        BigDecimal total,
 
-         Boolean estado_venta,
+        Boolean estado_venta,
 
-         Long id_cliente //Es el id no el objeto
+        Long id_cliente,
+        List<DetalleVentaResponseDto> detalles//Es el id no el objeto
 
 ){
 }

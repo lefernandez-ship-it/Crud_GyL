@@ -22,7 +22,6 @@ public record DetalleVentaRequestDto (
          @NotNull(message = "La venta es obligatoria")
          Long id_venta, // Agregado para la relación
 
-         @NotNull(message = "El estado es obligatorio") // Se usa NotNull para Booleanos
          Boolean estado_detalleVenta
 
 
