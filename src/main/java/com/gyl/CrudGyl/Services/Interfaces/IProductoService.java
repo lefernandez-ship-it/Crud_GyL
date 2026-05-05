@@ -12,6 +12,7 @@ public interface IProductoService {
     List<ProductoResponsetDto> listarProductos();
 
     List<ProductoResponsetDto> listarProductosConEstadoTrue();
+    List<ProductoResponsetDto> listarProductosConEstadoFalse();
 
     ProductoResponsetDto buscarPorId(Long id);
 

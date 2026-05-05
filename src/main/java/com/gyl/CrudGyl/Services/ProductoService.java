@@ -55,6 +55,14 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
+    public List<ProductoResponsetDto> listarProductosConEstadoFalse() {
+        return productoRepository.findByEstadoProdFalse() // Sin el punto y coma aquí
+                .stream()
+                .map(ProductoMapper::toDto)
+                .toList();
+    }
+
+    @Override
     public ProductoResponsetDto buscarPorId(Long id) {//Hacerlo metodo funcional
         return productoRepository.findById(id)
                 .map(ProductoMapper:: toDto)

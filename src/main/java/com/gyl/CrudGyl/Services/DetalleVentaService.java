@@ -79,6 +79,14 @@ public class DetalleVentaService implements IDetalleVentaService {
     }
 
     @Override
+    public List<DetalleVentaResponseDto> listarDetallesConEstadoFalse() {
+        return detalleVentaRepository.findByEstadoDetalleVentaFalse() // Sin el punto y coma aquí
+                .stream()
+                .map(DetalleVentaMapper::toDto)
+                .toList();
+    }
+
+    @Override
     public DetalleVentaResponseDto actualizarEstado(Long id, DetalleVentaRequestDto dto) {
 
         DetalleVenta detalleVenta=detalleVentaRepository.findById(id).orElseThrow(()->new RecursosNoEncontradoException(

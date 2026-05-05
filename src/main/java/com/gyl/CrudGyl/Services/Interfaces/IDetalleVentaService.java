@@ -22,6 +22,7 @@ public interface IDetalleVentaService {
     void eliminar(Long id);
 
     List<DetalleVentaResponseDto> listarDetallesConEstadoTrue();
+    List<DetalleVentaResponseDto> listarDetallesConEstadoFalse();
 
     DetalleVentaResponseDto actualizarEstado(Long id, DetalleVentaRequestDto dto);
 }

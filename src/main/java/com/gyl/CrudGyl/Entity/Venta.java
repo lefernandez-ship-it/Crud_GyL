@@ -42,7 +42,7 @@ public class Venta {
     private List<DetalleVenta> detalles;
 
 
-    @PrePersist // <--- ¡Esto es lo que falta!
+    @PrePersist
     protected void onCreate() {
         this.fechaVenta = LocalDateTime.now();
         if (this.estadoVenta == null) this.estadoVenta = true; // Valor por defecto

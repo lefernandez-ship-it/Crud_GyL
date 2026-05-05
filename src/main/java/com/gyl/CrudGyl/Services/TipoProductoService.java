@@ -81,6 +81,14 @@ public class TipoProductoService implements ITipoProductoService {
     }
 
     @Override
+    public List<TipoProdResponseDto> listarClientesConEstadoFalse() {
+        return tipoProdRepository.findByEstadoTipoProdFalse() // Sin el punto y coma aquí
+                .stream()
+                .map(TipoProdMapper::toDto)
+                .toList();
+    }
+
+    @Override
     public TipoProdResponseDto actualizarEstado(Long id, TipoProdRequestDto dto) {
 
        TipoProducto tipoProducto=tipoProdRepository.findById(id).orElseThrow(()->new RecursosNoEncontradoException(

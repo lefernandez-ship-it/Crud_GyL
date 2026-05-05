@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Manejo de Recursos No Encontrados (404)
     @ExceptionHandler(RecursosNoEncontradoException.class)
     public ResponseEntity<ErrorResponse> handleResourceNotFound(RecursosNoEncontradoException ex) {
         ErrorResponse error = new ErrorResponse(
@@ -18,8 +17,6 @@ public class GlobalExceptionHandler {
         );
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
-
-    // Manejo de Conflictos/Nombres Duplicados (409)
     @ExceptionHandler(NombreDuplicadoException.class)
     public ResponseEntity<ErrorResponse> handleDuplicateName(NombreDuplicadoException ex) {
         ErrorResponse error = new ErrorResponse(
@@ -30,7 +27,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.CONFLICT);
     }
 
-    // Manejo de Datos Inválidos o Bad Request (400)
     @ExceptionHandler(DatosInvalidosException.class)
     public ResponseEntity<ErrorResponse> handleInvalidData(DatosInvalidosException ex) {
         ErrorResponse error = new ErrorResponse(
@@ -41,7 +37,6 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
-    // Manejador Genérico para cualquier otra excepción no controlada (500)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex) {
         ErrorResponse error = new ErrorResponse(

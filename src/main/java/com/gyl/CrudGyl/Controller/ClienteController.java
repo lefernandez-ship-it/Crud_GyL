@@ -30,9 +30,14 @@ public class ClienteController {
         return clienteService.listarCliente();
     }
 
-    @GetMapping("/estado")
-    public List<ClienteResponseDto> listarEstados(){
+    @GetMapping("/estado/true")
+    public List<ClienteResponseDto> listarEstadosTrue(){
         return clienteService.listarClientesConEstadoTrue();
+    }
+
+    @GetMapping("/estado/false")
+    public List<ClienteResponseDto> listarEstadosFalse(){
+        return clienteService.listarClientesConEstadoFalse();
     }
 
     @PutMapping("/estado/{id}")//eliminar sin tener que usar delete

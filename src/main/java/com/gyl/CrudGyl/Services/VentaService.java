@@ -97,6 +97,14 @@ public class VentaService implements IVentaService {
     }
 
     @Override
+    public List<VentaResponseDto> listarVentasConEstadoFalse() {
+        return ventaRepository.findByEstadoVentaFalse()
+                .stream()
+                .map(VentaMapper::toDto)
+                .toList();
+    }
+
+    @Override
     public VentaResponseDto actualizarEstado(Long id, VentaRequestDto dto) {
         Venta venta=ventaRepository.findById(id).orElseThrow(()-> new RecursosNoEncontradoException(
                 "No se encontro una venta con el id: "+id

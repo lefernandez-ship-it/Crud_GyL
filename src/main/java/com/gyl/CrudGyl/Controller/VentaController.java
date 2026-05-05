@@ -31,9 +31,14 @@ public class VentaController {
         return ventaService.listarVentas();
     }
 
-    @GetMapping("/estado")
-    public List<VentaResponseDto> listarEstados(){
+    @GetMapping("/estado/true")
+    public List<VentaResponseDto> listarEstadosTrue(){
         return ventaService.listarVentasConEstadoTrue();
+    }
+
+    @GetMapping("/estado/false")
+    public List<VentaResponseDto> listarEstadosFalse(){
+        return ventaService.listarVentasConEstadoFalse();
     }
 
     @PutMapping("/estado/{id}")//eliminar sin tener que usar delete

@@ -19,4 +19,5 @@ public interface DetalleVentaRepository extends JpaRepository<DetalleVenta,Long>
     //List<DetalleVenta>findByNombre(String nombre);
 
     List<DetalleVenta> findByEstadoDetalleVentaTrue();
+    List<DetalleVenta> findByEstadoDetalleVentaFalse();
 }

@@ -34,15 +34,12 @@ public class DetalleVenta {
     @Column(name = "estado_detalleVenta")
     Boolean estadoDetalleVenta;
 
-    // Relación con la Venta (FK id_ventas)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_ventas", nullable = false)
     private Venta venta;
 
-    // Relación con el Producto (FK id_producto)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
 
-    // Constructores, Getters y Setters
 }

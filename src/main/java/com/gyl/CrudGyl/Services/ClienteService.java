@@ -85,6 +85,14 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
+    public List<ClienteResponseDto> listarClientesConEstadoFalse() {
+        return clienteRepository.findByEstadoClienteFalse()
+                .stream()
+                .map(ClienteMapper::toDto)
+                .toList();
+    }
+
+    @Override
     public ClienteResponseDto actualizarEstado(Long id, ClienteRequestDto dto) {
         Cliente cliente=clienteRepository.findById(id)
                 .orElseThrow(()->new RecursosNoEncontradoException(

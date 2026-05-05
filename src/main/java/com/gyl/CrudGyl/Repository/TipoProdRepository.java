@@ -19,5 +19,6 @@ public interface TipoProdRepository extends JpaRepository<TipoProducto,Long> {
 
     List<TipoProducto>findByNombre(String nombre);
 
-    List<TipoProducto> findByEstadoTipoProdTrue(); //Ver el metodo y como se llama
+    List<TipoProducto> findByEstadoTipoProdTrue();
+    List<TipoProducto> findByEstadoTipoProdFalse();//Ver el metodo y como se llama
 }

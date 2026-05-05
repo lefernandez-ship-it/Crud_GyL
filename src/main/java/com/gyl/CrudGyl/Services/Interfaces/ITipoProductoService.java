@@ -21,6 +21,7 @@ public interface ITipoProductoService {
     List<TipoProdResponseDto> busquedaNombre(String nombre);
 
     List<TipoProdResponseDto> listarClientesConEstadoTrue();
+    List<TipoProdResponseDto> listarClientesConEstadoFalse();
 
     TipoProdResponseDto actualizarEstado(Long id, TipoProdRequestDto dto);
 }

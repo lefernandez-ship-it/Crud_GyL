@@ -22,6 +22,7 @@ public interface IClienteService {
     List<ClienteResponseDto> busquedaNombre(String nombre);
 
     List<ClienteResponseDto> listarClientesConEstadoTrue();
+    List<ClienteResponseDto> listarClientesConEstadoFalse();
 
     ClienteResponseDto actualizarEstado(Long id,ClienteRequestDto dto);
 

@@ -20,6 +20,6 @@ public interface IVentaService {
     void eliminar(Long id);
 
     List<VentaResponseDto> listarVentasConEstadoTrue();
-
+    List<VentaResponseDto> listarVentasConEstadoFalse();
     VentaResponseDto actualizarEstado(Long id, VentaRequestDto dto);
 }
