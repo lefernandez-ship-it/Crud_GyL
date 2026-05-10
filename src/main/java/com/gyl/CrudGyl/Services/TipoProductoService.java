@@ -57,13 +57,14 @@ public class TipoProductoService implements ITipoProductoService {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public TipoProdResponseDto eliminar(Long id) {
         TipoProducto tipoProducto=tipoProdRepository.findById(id)
                 .orElseThrow(()-> new RecursosNoEncontradoException(
                         "No se encontro se encontro el id: "+id
                 ));
 
         tipoProdRepository.delete(tipoProducto);
+        return TipoProdMapper.toDto(tipoProducto);
     }
 
     @Override
@@ -101,37 +102,3 @@ public class TipoProductoService implements ITipoProductoService {
        return TipoProdMapper.toDto(guardado);
     }
 }
-
-
-//@Override
-//public List<ProductoResponsetDto> listarProductosConEstadoTrue() {
-//    return productoRepository.findByEstadoProdTrue() // Sin el punto y coma aquí
-//            .stream()
-//            .map(ProductoMapper::toDto)
-//            .toList();
-//}
-//
-//@Override
-//public ProductoResponsetDto buscarPorId(Long id) {//Hacerlo metodo funcional
-//    return productoRepository.findById(id)
-//            .map(ProductoMapper:: toDto)
-//            .orElseThrow(()->new RecursosNoEncontradoException(
-//                    "No se encontro el id: "+id));
-//}
-//
-
-//@Override
-//public ProductoResponsetDto actualizar(Long id, ProductoRequestdTO dto) {//Hacerlo metodo funcional
-//    Producto producto=productoRepository.findById(id)
-//            .orElseThrow(()->new RecursosNoEncontradoException(
-//                    "No se encontro el id: "+ id
-//            ));
-//    ProductoMapper.updateEntity(producto,dto);
-//    Producto guardado=productoRepository.save(producto);
-//    return ProductoMapper.toDto(guardado);
-//
-//    // 3. Guardamos la entidad y mapeamos el resultado a ResponseDTO
-//
-//}
-//
-

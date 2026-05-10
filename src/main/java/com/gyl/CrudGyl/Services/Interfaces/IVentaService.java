@@ -17,7 +17,7 @@ public interface IVentaService {
 
     VentaResponseDto actualizar(Long id,VentaRequestDto dto);
 
-    void eliminar(Long id);
+    VentaResponseDto eliminar(Long id);
 
     List<VentaResponseDto> listarVentasConEstadoTrue();
     List<VentaResponseDto> listarVentasConEstadoFalse();

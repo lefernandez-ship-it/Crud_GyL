@@ -20,7 +20,7 @@ public interface IProductoService {
 
     ProductoResponsetDto actualizar(Long id,ProductoRequestdTO dto);
 
-    void eliminar(Long id);
+    ProductoResponsetDto eliminar(Long id);
 
     List<ProductoResponsetDto> busquedaNombre(String nombre);
 }

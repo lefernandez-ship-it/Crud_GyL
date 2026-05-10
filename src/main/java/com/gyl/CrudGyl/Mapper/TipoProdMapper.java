@@ -28,7 +28,7 @@ public class TipoProdMapper {
     }
     public static void updateEntity(TipoProducto tipoProducto,TipoProdRequestDto tipoProdResponseDto){
         tipoProducto.setNombre(tipoProdResponseDto.nombre());
-        tipoProducto.setDescripcion(tipoProducto.getDescripcion());
+        tipoProducto.setDescripcion(tipoProdResponseDto.descripcion());
         tipoProducto.setEstadoTipoProd(tipoProdResponseDto.estado_tipoProd());
     }
 

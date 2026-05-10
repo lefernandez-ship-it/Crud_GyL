@@ -6,8 +6,13 @@ import com.gyl.CrudGyl.Dto.Response.VentaResponseDto;
 import com.gyl.CrudGyl.Entity.Cliente;
 import com.gyl.CrudGyl.Entity.Producto;
 import com.gyl.CrudGyl.Entity.Venta;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
-public class VentaMapper {
+
+public class VentaMapper { // 1. Cambiado a interface
+
     public VentaMapper() {
     }
 
@@ -34,10 +39,12 @@ public class VentaMapper {
         );
     }
 
-    public void updateEntity(Venta venta,VentaResponseDto dto){
+    public static void updateEntity(Venta venta,VentaRequestDto dto){
         venta.setTotal(dto.total());
         venta.setFechaVenta(dto.fechaVenta());
         venta.setEstadoVenta(dto.estado_venta());
+        venta.getCliente().setId_cliente(dto.id_cliente());
+
     }
 
     public static void updateEstado(Venta venta, VentaRequestDto dto){

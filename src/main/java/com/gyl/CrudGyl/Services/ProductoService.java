@@ -91,19 +91,28 @@ public class ProductoService implements IProductoService {
         ProductoMapper.updateEntity(producto,dto);
         Producto guardado=productoRepository.save(producto);
         return ProductoMapper.toDto(guardado);
-
-        // 3. Guardamos la entidad y mapeamos el resultado a ResponseDTO
-
     }
 
+
     @Override
-    public void eliminar(Long id) {
+    public ProductoResponsetDto eliminar(Long id) {
         Producto producto=productoRepository.findById(id)
                 .orElseThrow(()->new RecursosNoEncontradoException(
                         "No se encontro el id: "+ id
                 ));
         productoRepository.delete(producto);
+
+        return ProductoMapper.toDto(producto);
     }
+
+    /**
+     *
+     * Resumen General de busqueda nombre:
+     * param param (Poner en todos los metodos)(Metodo, accion y parametros)
+     * linea 117 (isEmpty)
+     * @param nombre
+     * @return
+     */
 
     @Override
     public List<ProductoResponsetDto> busquedaNombre(String nombre){

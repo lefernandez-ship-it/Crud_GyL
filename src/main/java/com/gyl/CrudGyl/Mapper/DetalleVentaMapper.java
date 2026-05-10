@@ -5,6 +5,7 @@ import com.gyl.CrudGyl.Dto.Request.ProductoRequestdTO;
 import com.gyl.CrudGyl.Dto.Response.DetalleVentaResponseDto;
 import com.gyl.CrudGyl.Entity.DetalleVenta;
 import com.gyl.CrudGyl.Entity.Producto;
+import org.mapstruct.Mapping;
 
 public class DetalleVentaMapper {
     public DetalleVentaMapper() {

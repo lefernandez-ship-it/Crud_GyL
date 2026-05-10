@@ -22,6 +22,5 @@ public interface ClienteRepository extends JpaRepository<Cliente,Long> {
     List<Cliente> findByEstadoClienteTrue();
     List<Cliente> findByEstadoClienteFalse();
 
-//    @Override
-//    List<Cliente>findByNombre(String nombre);
+
 }

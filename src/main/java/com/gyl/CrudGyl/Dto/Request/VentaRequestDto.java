@@ -10,12 +10,11 @@ import java.util.List;
 
 public record VentaRequestDto(
 
-//        @NotNull(message = "La fecha de venta es obligatoria")
-//         @PastOrPresent(message = "La fecha no puede ser futura")
+        @NotNull(message = "La fecha de venta es obligatoria")
+         @PastOrPresent(message = "La fecha no puede ser futura")
          LocalDateTime fechaVenta,
 
-//        @NotNull(message = "El monto total es obligatorio")
-//         @DecimalMin(value = "0.0", inclusive = false, message = "El total debe ser mayor a cero")
+        @NotNull(message = "El monto total es obligatorio")
          BigDecimal total,
 
         @NotNull(message = "El cliente es obligatorio")

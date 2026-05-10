@@ -4,6 +4,7 @@ package com.gyl.CrudGyl.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,7 +34,7 @@ public class Cliente {
     @Column(unique = true)
     private String correo;
 
-    @NotBlank(message = "El nombre es obligatorio")
+    @Pattern(regexp = "^\\d{8}$")
     private String telefono;
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -42,6 +43,4 @@ public class Cliente {
     @Column(name = "estado_cliente", nullable = false)
     private Boolean estadoCliente;
 
-
-    // Constructores, Getters y Setters
 }

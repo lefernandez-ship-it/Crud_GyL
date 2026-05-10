@@ -55,14 +55,8 @@ public class VentaController {
         return ventaService.buscarPorId(id);
     }
 
-//    @GetMapping("/buscar/{nombre}")
-//    public List<VentaResponseDto> buscarPorFecha(@PathVariable LocalDate fecha){
-//        return ventaService.busquedaNombre(nombre);
-//    }
-
-    //@PatchMapping
     @PutMapping("/{id}")
-    public VentaResponseDto actualizarProducto(@PathVariable Long id, @Valid @RequestBody VentaRequestDto dto) {
+    public VentaResponseDto actualizarVenta(@PathVariable Long id, @Valid @RequestBody VentaRequestDto dto) {
         return ventaService.actualizar(id, dto);
     }
 }

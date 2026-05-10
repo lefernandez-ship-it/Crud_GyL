@@ -42,6 +42,7 @@ public class ProductController {
     public void eliminar(@PathVariable Long id){
         productoService.eliminar(id);
     }
+
     @GetMapping("/{id}")
     public ProductoResponsetDto buscarPorId(@PathVariable Long id){
         return productoService.buscarPorId(id);
@@ -52,7 +53,6 @@ public class ProductController {
         return productoService.busquedaNombre(nombre);
     }
 
-    //@PatchMapping
     @PutMapping("/{id}")
     public ProductoResponsetDto actualizarProducto(@PathVariable Long id, @Valid @RequestBody ProductoRequestdTO dto) {
         return productoService.actualizar(id, dto);

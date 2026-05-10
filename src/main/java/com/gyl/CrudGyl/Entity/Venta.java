@@ -52,6 +52,4 @@ public class Venta {
         detalles.add(detalle);
         detalle.setVenta(this); // Esto asegura que el detalle sepa a qué venta pertenece
     }
-
-    // Constructores, Getters y Setters
 }

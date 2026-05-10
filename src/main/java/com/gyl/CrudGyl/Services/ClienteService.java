@@ -13,6 +13,7 @@ import com.gyl.CrudGyl.Services.Interfaces.IClienteService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService implements IClienteService {
@@ -55,24 +56,26 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public ClienteResponseDto eliminar(Long id) {
         Cliente cliente=clienteRepository.findById(id)
                 .orElseThrow(()->new RecursosNoEncontradoException(
                         "No se encontro el id: "+ id
                 ));
         clienteRepository.delete(cliente);
+        System.out.println("Se elimino el cliente con el id: "+cliente.getId_cliente());
+        return  ClienteMapper.toDto(cliente);
     }
 
     @Override
     public List<ClienteResponseDto> busquedaNombre(String nombre) {
         List<Cliente> clientes = clienteRepository.findByNombre(nombre);
-        if (clientes.isEmpty()) {
-            throw new RecursosNoEncontradoException("No se encontraron clientes con el nombre: " + nombre);
-        }
-        return clienteRepository.findByNombre(nombre)
-                .stream()
-                .map(ClienteMapper:: toDto)
-                .toList();
+
+        return Optional.ofNullable(clienteRepository.findByNombre(nombre))
+                .filter(lista -> !lista.isEmpty())
+                .map(lista -> lista.stream()
+                        .map(ClienteMapper::toDto)
+                        .toList())
+                .orElseThrow(() -> new RecursosNoEncontradoException("No se encontraron clientes con el nombre: " + nombre));
     }
 
     //FALTA ESTO
@@ -92,6 +95,13 @@ public class ClienteService implements IClienteService {
                 .toList();
     }
 
+    /**
+     *
+     *
+     * @param id
+     * @param dto
+     * @return
+     */
     @Override
     public ClienteResponseDto actualizarEstado(Long id, ClienteRequestDto dto) {
         Cliente cliente=clienteRepository.findById(id)

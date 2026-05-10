@@ -50,12 +50,6 @@ public class TipoProdController {
         return tipoProductoService.buscarPorId(id);
     }
 
-//    @GetMapping("/buscar/{nombre}")
-//    public List<VentaResponseDto> buscarPorFecha(@PathVariable LocalDate fecha){
-//        return ventaService.busquedaNombre(nombre);
-//    }
-
-    //@PatchMapping
     @PutMapping("/{id}")
     public TipoProdResponseDto actualizarProducto(@PathVariable Long id, @Valid @RequestBody TipoProdRequestDto dto) {
         return tipoProductoService.actualizar(id, dto);

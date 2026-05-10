@@ -19,7 +19,8 @@ public interface IDetalleVentaService {
 
     DetalleVentaResponseDto actualizar(Long id,DetalleVentaRequestDto dto);
 
-    void eliminar(Long id);
+    // poner parametro de devolucion DetalleVentaResponseDto para saber cual elimine
+    DetalleVentaResponseDto eliminar(Long id);
 
     List<DetalleVentaResponseDto> listarDetallesConEstadoTrue();
     List<DetalleVentaResponseDto> listarDetallesConEstadoFalse();

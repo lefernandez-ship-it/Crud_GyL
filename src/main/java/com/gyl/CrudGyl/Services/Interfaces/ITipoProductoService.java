@@ -16,7 +16,7 @@ public interface ITipoProductoService {
 
     TipoProdResponseDto actualizar(Long id,TipoProdRequestDto dto);
 
-    void eliminar(Long id);
+    TipoProdResponseDto eliminar(Long id);
 
     List<TipoProdResponseDto> busquedaNombre(String nombre);
 

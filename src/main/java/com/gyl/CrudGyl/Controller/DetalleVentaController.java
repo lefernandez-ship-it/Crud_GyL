@@ -50,14 +50,5 @@ public class DetalleVentaController {
         return detalleVentaService.buscarPorId(id);
     }
 
-//    @GetMapping("/buscar/{nombre}")
-//    public List<ClienteResponseDto> buscarPorNombre(@PathVariable String nombre){
-//        return clienteService.busquedaNombre(nombre);
-//    }
 
-    //@PatchMapping
-//    @PutMapping("/{id}")
-//    public DetalleVentaResponseDto actualizarDetalleVenta(@PathVariable Long id, @Valid @RequestBody DetalleVentaRequestDto dto) {
-//        return detalleVentaService.actualizar(id, dto);
-//    }
 }

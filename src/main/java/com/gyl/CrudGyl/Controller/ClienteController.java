@@ -49,6 +49,7 @@ public class ClienteController {
     public void eliminar(@PathVariable Long id){
         clienteService.eliminar(id);
     }
+
     @GetMapping("/{id}")
     public ClienteResponseDto buscarPorId(@PathVariable Long id){
         return clienteService.buscarPorId(id);
@@ -59,7 +60,7 @@ public class ClienteController {
         return clienteService.busquedaNombre(nombre);
     }
 
-    //@PatchMapping
+    //@PatchMapping modifica un atributo
     @PutMapping("/{id}")
     public ClienteResponseDto actualizarCliente(@PathVariable Long id, @Valid @RequestBody ClienteRequestDto dto) {
         return clienteService.actualizar(id, dto);

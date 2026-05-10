@@ -11,12 +11,10 @@ public record ProductoRequestdTO (
         @NotBlank(message ="El nombre no puede ser vacio")
         String nombre,
 
-//        @NotBlank(message="El precio no puede ser vacio")
         @Positive(message="El precio debe ser mayor a cero")
         @NotNull(message ="El nombre no puede ser negativo")
         Double precio,
 
-//        @NotBlank(message ="El stock no puede estar vacio")
         @Positive(message="El stock debe ser cero o mayor")//Que sea positivo
         @Min(value=0,message = "El stock no puede ser negativo")
         Integer stock,

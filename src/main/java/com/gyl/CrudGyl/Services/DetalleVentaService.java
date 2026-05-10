@@ -60,15 +60,20 @@ public class DetalleVentaService implements IDetalleVentaService {
     }
 
     @Override
-    public void eliminar(Long id) {
+    public DetalleVentaResponseDto eliminar(Long id) {
 
         DetalleVenta detalleVenta=detalleVentaRepository.findById(id)
                 .orElseThrow(()->new RecursosNoEncontradoException("" +
                 "No se encontro un detalle venta con ese id: "+id));
 
         detalleVentaRepository.delete(detalleVenta);
+
+        return DetalleVentaMapper.toDto(detalleVenta);
     }
 
+    /*
+
+     */
     @Override
     public List<DetalleVentaResponseDto> listarDetallesConEstadoTrue() {
 

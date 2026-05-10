@@ -28,21 +28,20 @@ public class VentaService implements IVentaService {
     private ClienteRepository clienteRepository;
     private ProductoRepository productoRepository;
 
+
     public VentaService(VentaRepository ventaRepository, ClienteRepository clienteRepository, ProductoRepository productoRepository) {
         this.ventaRepository = ventaRepository;
         this.clienteRepository = clienteRepository;
         this.productoRepository = productoRepository;
     }
-
     @Override
     @Transactional
     public VentaResponseDto crear(VentaRequestDto dto) {
         Venta venta = new Venta();
-
-        Cliente clienteGenerico = clienteRepository.findById(1L)
+        Cliente clienteGenerico = clienteRepository.findById(dto.id_cliente())//1L
                 .orElseThrow(() -> new RecursosNoEncontradoException("Debe crear un cliente genérico con ID 1 primero"));
 
-        venta.setCliente(clienteGenerico); // Asociamos el cliente fijo
+        venta.setCliente(clienteGenerico);
 
         procesarItems(venta, dto.items());
         return VentaMapper.toDto(ventaRepository.save(venta));
@@ -67,24 +66,34 @@ public class VentaService implements IVentaService {
         ));
     }
 
+    //Terminar metodo
     @Override
+    @Transactional
     public VentaResponseDto actualizar(Long id, VentaRequestDto dto) {
-        Venta venta=ventaRepository.findById(id).orElseThrow(()->new RecursosNoEncontradoException(
-                "No se encontro la venta con el id: "+id
+        Venta venta = ventaRepository.findById(id).orElseThrow(() -> new RecursosNoEncontradoException(
+                "No se encontro la venta con el id: " + id
         ));
-        VentaMapper.updateEstado(venta,dto);
-        Venta guardado=ventaRepository.save(venta);
+        VentaMapper.updateEntity(venta, dto);
+
+        if (venta.getDetalles() != null) {
+            venta.getDetalles().clear();
+        }
+
+        procesarItems(venta, dto.items());
+
+        Venta guardado = ventaRepository.save(venta);
         return VentaMapper.toDto(guardado);
     }
 
     @Override
-    public void eliminar(Long id) {
+    public VentaResponseDto eliminar(Long id) {
         Venta venta=ventaRepository.findById(id)
                 .orElseThrow(()->new RecursosNoEncontradoException(
                 "No se encontro la venta con el id: "+id
         ));
 
         ventaRepository.delete(venta);
+        return VentaMapper.toDto(venta);
     }
 
     @Override
@@ -110,6 +119,7 @@ public class VentaService implements IVentaService {
                 "No se encontro una venta con el id: "+id
         ));
         VentaMapper.updateEstado(venta,dto);
+
         Venta guardado=ventaRepository.save(venta);
         return VentaMapper.toDto(guardado);
     }
@@ -119,32 +129,24 @@ public class VentaService implements IVentaService {
         List<DetalleVenta> detallesEntities = new ArrayList<>();
 
         for (DetalleVentaRequestDto itemDto : itemsDto) {
-            // 1. Buscamos el producto real para obtener el precio actual de la DB
             Producto producto = productoRepository.findById(itemDto.id_producto())
                     .orElseThrow(() -> new RecursosNoEncontradoException("Producto no encontrado"));
 
-            // 2. Creamos la entidad de detalle y seteamos sus valores calculados
             DetalleVenta detalle = new DetalleVenta();
             detalle.setProducto(producto);
             detalle.setCantidad(itemDto.cantidad());
 
-            // El precio lo sacamos del producto, no del DTO (por seguridad)
             BigDecimal precioActual = BigDecimal.valueOf(producto.getPrecio());
             BigDecimal subTotal = precioActual.multiply(new BigDecimal(itemDto.cantidad()));
 
             detalle.setPrecioUnitario(precioActual);
             detalle.setSubTotal(subTotal);
             detalle.setEstadoDetalleVenta(true);
-
-            // 3. Vinculamos el detalle con la venta (ambos sentidos)[cite: 1, 2]
             detalle.setVenta(venta);
             detallesEntities.add(detalle);
 
-            // 4. Vamos sumando al total acumulado de la venta
             totalVenta = totalVenta.add(subTotal);
         }
-
-        // Finalmente actualizamos la venta con los resultados
         venta.setDetalles(detallesEntities);
         venta.setTotal(totalVenta);
     }

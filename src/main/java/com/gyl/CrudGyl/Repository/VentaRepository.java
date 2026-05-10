@@ -14,14 +14,9 @@ public interface VentaRepository extends JpaRepository<Venta,Long> {
 
     @Override
     List<Venta> findAll();
-
     @Override
     Optional<Venta> findById(Long aLong);
-
-    //List<Venta>findByNombre(String nombre);
-
     List<Venta>findByFechaVenta(LocalDate fecha);
-
     List<Venta> findByEstadoVentaTrue();
     List<Venta> findByEstadoVentaFalse();
 }

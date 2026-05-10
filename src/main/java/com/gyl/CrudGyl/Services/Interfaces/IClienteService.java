@@ -17,8 +17,7 @@ public interface IClienteService {
 
     ClienteResponseDto actualizar(Long id,ClienteRequestDto dto);
 
-    void eliminar(Long id);
-
+    ClienteResponseDto eliminar(Long id);
     List<ClienteResponseDto> busquedaNombre(String nombre);
 
     List<ClienteResponseDto> listarClientesConEstadoTrue();
